@@ -6,12 +6,8 @@ const app = express();
 const connectDb = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    app.listen(process.env.PORT, () =>
-      console.log(`NewBackend Server is listening on ${process.env.PORT}`)
-    );
-    console.log("Hogaya NewBackend database se connection");
+    app.listen(process.env.PORT || 4000);
   } catch (error) {
-    console.error("Read this error", error.message);
     process.exit(1);
   }
 };
