@@ -6,9 +6,14 @@ const app = express();
 const connectDb = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    app.listen(process.env.PORT || 4000);
+    console.log(`mongoDB connected`);
+    const PORT = process.env.PORT || 4000;
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
   } catch (error) {
     process.exit(1);
+    console.log("Server failed to start:", error);
   }
 };
 
